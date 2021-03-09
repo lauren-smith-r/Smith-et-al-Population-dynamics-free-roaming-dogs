@@ -1,0 +1,61 @@
+Sampling Period,Town,Survey No,Date,Start Temp,Finish Temp,Mean Temperature,Weather,Rain,Marketday,Start time,Finish time,Between 06:30 and 09:30,Survey length (minutes),Notes
+One (April 2018),Area One,Survey 1,01/05/2018,12,19,15.5,None,No,No,07:00,08:57,Yes,117,
+One (April 2018),Area One,Survey 2,02/05/2018,11,17,14,None,No,No,06:55,08:53,Yes,118,
+One (April 2018),Area One,Survey 3,03/05/2018,14,17,15.5,None,No,No,06:50,08:29,Yes,99,
+One (April 2018),Area Two,Survey 1,04/05/2018,10,17,13.5,None,No,No,06:50,08:42,Yes,112,
+One (April 2018),Area Two,Survey 2,05/05/2018,13,14,13.5,None,No,No,06:45,08:21,Yes,96,
+One (April 2018),Area Two,Survey 3,06/05/2018,11,11,11,None,No,No,06:45,08:13,Yes,88,
+One (April 2018),Area Three,Survey 1,07/05/2018,6,24,15,None,No,No,06:55,08:55,Yes,120,
+One (April 2018),Area Three,Survey 2,08/05/2018,11,13,12,None,No,No,06:55,08:50,Yes,115,
+One (April 2018),Area Three,Survey 3,09/05/2018,14,17,15.5,None,No,No,06:50,08:45,Yes,85,
+One (April 2018),Area Four,Survey 1,10/05/2018,12,17,14.5,None,No,No,06:55,08:50,Yes,115,
+One (April 2018),Area Four,Survey 2,11/05/2018,10,16,13,None,No,No,06:55,08:26,Yes,91,
+One (April 2018),Area Four,Survey 3,12/05/2018,9,13,11,None,No,No,06:50,08:34,Yes,104,
+Two (July 2018),Area One,Survey 1,20/07/2018,18,19,18.5,None,No,No,07:00,08:28,Yes,88,
+Two (July 2018),Area One,Survey 2,21/07/2018,17,19,18,None,No,Yes,07:00,08:47,Yes,107,Busy market on
+Two (July 2018),Area One,Survey 3,22/07/2018,14,18,16,None,No,No,07:00,08:24,Yes,84,
+Two (July 2018),Area Two,Survey 1,23/07/2018,18,19,18.5,None,No,No,07:00,08:41,Yes,101,
+Two (July 2018),Area Two,Survey 2,24/07/2018,18,19,18.5,Light rain,Yes,No,07:00,08:36,Yes,96,
+Two (July 2018),Area Two,Survey 3,25/07/2018,18,18,18,Fog,No,No,07:00,08:42,Yes,102,
+Two (July 2018),Area Three,Survey 1,30/07/2018,17,21,19,None,No,No,07:00,09:14,Yes,74,"Study area three and four swapped around. Had flood in apartment, included an extra day of counting before flight on last day. Area four is closer to the airport so worked better logistically."
+Two (July 2018),Area Three,Survey 2,31/07/2018,18,19,18.5,Heavy rain,Yes,No,07:00,08:48,Yes,108,
+Two (July 2018),Area Three,Survey 3,01/08/2018,18,19,18.5,None,No,No,05:58,07:53,No,115,Started earlier to make flight.
+Two (July 2018),Area Four,Survey 1,27/07/2018,17,21,19,None,No,No,06:50,09:05,Yes,135,
+Two (July 2018),Area Four,Survey 2,28/07/2018,17,21,19,None,No,No,06:55,08:58,Yes,124,
+Two (July 2018),Area Four,Survey 3,29/07/2018,20,21,20.5,None,No,No,07:00,09:07,Yes,127,
+Three (October 2018),Area One,Survey 1,16/10/2018,6,7,6.5,None,No,No,06:55,08:28,Yes,94,
+Three (October 2018),Area One,Survey 2,17/10/2018,5,7,6,None,No,NA,NA,NA,NA,NA,Survey did not go ahead - Lauren ill.
+Three (October 2018),Area One,Survey 3,18/10/2018,7,7,7,None,No,No,07:13,08:46,Yes,153,Decided to start survey later due to daylight. Sunrise at 07:50.
+Three (October 2018),Area Two,Survey 1,19/10/2018,7,9,8,None,No,No,07:20,08:50,Yes,90,
+Three (October 2018),Area Two,Survey 2,20/10/2018,8,9,8.5,None,No,No,07:30,09:01,Yes,91,
+Three (October 2018),Area Two,Survey 3,21/10/2018,7,7,7,Drizzle,Yes,No,07:28,09:00,Yes,92,
+Three (October 2018),Area Three,Survey 1,22/10/2018,0,1,0.5,None,No,No,07:27,09:07,Yes,100,
+Three (October 2018),Area Three,Survey 2,23/10/2018,6,6,6,Raining,Yes,No,07:30,09:07,Yes,97,
+Three (October 2018),Area Three,Survey 3,24/10/2018,6,6,6,Raining,Yes,No,07:40,09:11,Yes,91,"Left camera at home, had to turn back so start time was slightly later."
+Three (October 2018),Area Four,Survey 1,25/10/2018,3,3,3,None,No,No,07:31,09:27,Yes,122,
+Three (October 2018),Area Four,Survey 2,26/10/2018,6,6,6,None,No,No,07:30,09:08,Yes,98,
+Three (October 2018),Area Four,Survey 3,27/10/2018,8,8,8,None,No,Yes,07:30,09:13,Yes,103,Market day
+Four (April 2019),Area One,Survey 1,26/04/2019,9,15,12,None,No,Yes,07:00,08:36,Yes,94,Market day
+Four (April 2019),Area One,Survey 2,27/04/2019,16,17,16.5,None,No,No,07:00,08:25,Yes,85,
+Four (April 2019),Area One,Survey 3,28/04/2019,12,12,12,None,No,No,06:57,08:14,Yes,77,Raining and thunderstorms the night before.
+Four (April 2019),Area Two,Survey 1,29/04/2019,9,10,9.5,Raining,Yes,No,07:00,08:26,Yes,86,Public holiday
+Four (April 2019),Area Two,Survey 2,30/04/2019,9,10,9.5,Drizzling,Yes,No,06:50,08:21,Yes,91,
+Four (April 2019),Area Two,Survey 3,01/05/2019,8,8,8,Drizzling,Yes,No,06:55,08:24,Yes,89,
+Four (April 2019),Area Three,Survey 1,02/05/2019,7,10,8.5,None,No,No,06:57,08:58,Yes,121,
+Four (April 2019),Area Three,Survey 2,03/05/2019,9,12,10.5,None,No,No,07:08,08:50,Yes,102,
+Four (April 2019),Area Three,Survey 3,04/05/2019,8,8,8,None,No,No,07:02,08:49,Yes,107,
+Four (April 2019),Area Four,Survey 1,05/05/2019,9,9,9,Drizzling,Yes,No,07:06,08:49,Yes,103,
+Four (April 2019),Area Four,Survey 2,06/05/2019,5,5,5,Drizzling,Yes,No,07:02,08:51,Yes,109,
+Four (April 2019),Area Four,Survey 3,07/05/2019,5,6,5.5,None,No,No,07:04,08:51,Yes,107,
+Four (April 2019),Area One,Survey 1,21/07/2019,15,19,17,None,No,No,07:02,08:20,Yes,78,
+Four (April 2019),Area One,Survey 2,22/07/2019,16,17,16.5,None,No,No,07:05,08:28,Yes,83,
+Four (April 2019),Area One,Survey 3,23/07/2019,16,18,17,None,No,No,07:00,08:18,Yes,78,
+Four (April 2019),Area Two,Survey 1,24/07/2019,16,17,16.5,None,No,No,07:00,08:32,Yes,92,
+Four (April 2019),Area Two,Survey 2,25/07/2019,16,17,16.5,None,No,No,07:00,08:36,Yes,96,
+Four (April 2019),Area Two,Survey 3,26/07/2019,16,18,17,None,No,No,07:02,08:44,Yes,102,
+Four (April 2019),Area Three,Survey 1,27/07/2019,14,17,15.5,None,No,No,07:01,08:38,Yes,97,
+Four (April 2019),Area Three,Survey 2,28/07/2019,20,21,20.5,None,No,No,07:00,08:27,Yes,87,
+Four (April 2019),Area Three,Survey 3,29/07/2019,19,23,21,None,No,No,07:00,08:35,Yes,95,
+Four (April 2019),Area Four,Survey 1,30/07/2019,18,19,18.5,None,No,No,07:03,08:32,Yes,89,
+Four (April 2019),Area Four,Survey 2,31/07/2019,18,19,18.5,None,No,No,07:00,08:26,Yes,86,
+Four (April 2019),Area Four,Survey 3,01/08/2019,16,18,17,None,No,No,07:07,08:33,Yes,86,
