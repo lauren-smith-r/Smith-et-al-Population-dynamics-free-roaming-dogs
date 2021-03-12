@@ -230,47 +230,8 @@ sex_italy <- matrix(c(sex_zi_A1_italy, sex_zi_A2_italy, sex_zi_A3_italy, sex_zi_
               nrow = n_augment_italy, ncol = 4)
 
 
-# # add distinctiveness (unknown) for pseudo(zi) individuals
-# distinct_a1 <- ifelse(d[d$Study.Area %in% "ITSA1","Distinctiveness"] == "No photo", -100,
-#                       d[d$Study.Area %in% "ITSA1","Distinctiveness"])
-# 
-# distinct_a2 <- ifelse(d[d$Study.Area %in% "ITSA2","Distinctiveness"] == "No photo", -100,
-#                       d[d$Study.Area %in% "ITSA2","Distinctiveness"])
-# 
-# distinct_a3 <- ifelse(d[d$Study.Area %in% "ITSA3","Distinctiveness"] == "No photo", -100,
-#                       d[d$Study.Area %in% "ITSA3","Distinctiveness"])
-# 
-# distinct_a4 <- ifelse(d[d$Study.Area %in% "ITSA4","Distinctiveness"] == "No photo", -100,
-#                       d[d$Study.Area %in% "ITSA4","Distinctiveness"])
-# 
-# distinct_zi_S1 <- c(distinct_a1, rep(-100, n_augment - nrow(ditaly_ch_s1)))
-# distinct_zi_S2 <- c(distinct_a2, rep(-100, n_augment - nrow(ditaly_ch_s2)))
-# distinct_zi_S3 <- c(distinct_a3, rep(-100, n_augment - nrow(ditaly_ch_s3)))
-# distinct_zi_S4 <- c(distinct_a4, rep(-100, n_augment - nrow(ditaly_ch_s4)))
-
-# # create combined distinctiveness predictor
-# distinct <- matrix(c(distinct_zi_S1, distinct_zi_S2, distinct_zi_S3, distinct_zi_S4),
-#                    nrow = n_augment, ncol = 4)
-# 
-# distinct_factor <- as.factor(distinct)
-# distinct_factor <- factor(distinct_factor, levels = c(1,2,3,-100))
-# 
-# 
-# distinct_matrix <- model.matrix(~distinct_factor)[,-1]
-# distinct_matrix_a1 <- distinct_matrix[1:50,]
-# distinct_matrix_a2 <- distinct_matrix[51:100,]
-# distinct_matrix_a3 <- distinct_matrix[101:150,]
-# distinct_matrix_a4 <- distinct_matrix[151:200,]
-# 
-# distinct_model_matrix <- array(
-#   c(distinct_matrix_a1, distinct_matrix_a2, distinct_matrix_a3, distinct_matrix_a4),
-#   dim=c(50,3,4)
-# )
-
 ## Area distances
-
 area_dmat_italy <- read.csv("Italy_Distances.csv")[,-1]
-#area_dmat_italy_scaled_10 <- area_dmat_italy/10
 
 # Time distances
 
@@ -288,14 +249,6 @@ time_dmat_italy <- matrix(c(
 ),
 nrow = 5, ncol=5, byrow = TRUE
 )
-
-#first_caps = array(NA, dim=c(n_augment, 2, 4))
-
-# for(m in 1:dim(ditaly_ch_zi)[1]){
-#   for(a in 1:4){
-#     first_caps[m,,a] <- first_cap(ditaly_ch_zi[m,,,a])
-#   }
-# }
 
 # ARRANGE UKRAINE DATA------------------------------------------------------------------------------------------------
 
@@ -422,94 +375,6 @@ sex_zi_A4_ukr <- c(sex_a4_ukr, rep(-100, n_augment_ukr - nrow(dukr_ch_s4)))
 sex_ukr <- matrix(c(sex_zi_A1_ukr, sex_zi_A2_ukr, sex_zi_A3_ukr, sex_zi_A4_ukr),
                     nrow = n_augment_ukr, ncol = 4)
 
-# ### NEUTER STATUS
-# 
-# d_ukr[d_ukr$Study.Area %in% c("UASA1","UASA2","UASA3","UASA4"), "NeuterP1"]
-# 
-# 
-# neuter_a1_ukr <-  c(
-#   ifelse( !(d_ukr[ d_ukr$Study.Area %in% "UASA1", "NeuterP1"] %in% c("Yes","No")), -100, d_ukr[d_ukr$Study.Area %in% "UASA1", "NeuterP1"]),
-#   ifelse( !(d_ukr[ d_ukr$Study.Area %in% "UASA1", "NeuterP2"] %in% c("Yes","No")), -100, d_ukr[d_ukr$Study.Area %in% "UASA1", "NeuterP2"]),
-#   ifelse( !(d_ukr[ d_ukr$Study.Area %in% "UASA1", "NeuterP3"] %in% c("Yes","No")), -100, d_ukr[d_ukr$Study.Area %in% "UASA1", "NeuterP3"]),
-#   ifelse( !(d_ukr[ d_ukr$Study.Area %in% "UASA1", "NeuterP4"] %in% c("Yes","No")), -100, d_ukr[d_ukr$Study.Area %in% "UASA1", "NeuterP4"]),
-#   ifelse( !(d_ukr[ d_ukr$Study.Area %in% "UASA1", "NeuterP5"] %in% c("Yes","No")), -100, d_ukr[d_ukr$Study.Area %in% "UASA1", "NeuterP5"])
-# )
-# 
-# neuter_a2_ukr <-  c(
-#   ifelse( !(d_ukr[ d_ukr$Study.Area %in% "UASA2", "NeuterP1"] %in% c("Yes","No")), -100, d_ukr[d_ukr$Study.Area %in% "UASA2", "NeuterP1"]),
-#   ifelse( !(d_ukr[ d_ukr$Study.Area %in% "UASA2", "NeuterP2"] %in% c("Yes","No")), -100, d_ukr[d_ukr$Study.Area %in% "UASA2", "NeuterP2"]),
-#   ifelse( !(d_ukr[ d_ukr$Study.Area %in% "UASA2", "NeuterP3"] %in% c("Yes","No")), -100, d_ukr[d_ukr$Study.Area %in% "UASA2", "NeuterP3"]),
-#   ifelse( !(d_ukr[ d_ukr$Study.Area %in% "UASA2", "NeuterP4"] %in% c("Yes","No")), -100, d_ukr[d_ukr$Study.Area %in% "UASA2", "NeuterP4"]),
-#   ifelse( !(d_ukr[ d_ukr$Study.Area %in% "UASA2", "NeuterP5"] %in% c("Yes","No")), -100, d_ukr[d_ukr$Study.Area %in% "UASA2", "NeuterP5"])
-# )
-# 
-# neuter_a3_ukr <-  c(
-#   ifelse( !(d_ukr[ d_ukr$Study.Area %in% "UASA3", "NeuterP1"] %in% c("Yes","No")), -100, d_ukr[d_ukr$Study.Area %in% "UASA3", "NeuterP1"]),
-#   ifelse( !(d_ukr[ d_ukr$Study.Area %in% "UASA3", "NeuterP2"] %in% c("Yes","No")), -100, d_ukr[d_ukr$Study.Area %in% "UASA3", "NeuterP2"]),
-#   ifelse( !(d_ukr[ d_ukr$Study.Area %in% "UASA3", "NeuterP3"] %in% c("Yes","No")), -100, d_ukr[d_ukr$Study.Area %in% "UASA3", "NeuterP3"]),
-#   ifelse( !(d_ukr[ d_ukr$Study.Area %in% "UASA3", "NeuterP4"] %in% c("Yes","No")), -100, d_ukr[d_ukr$Study.Area %in% "UASA3", "NeuterP4"]),
-#   ifelse( !(d_ukr[ d_ukr$Study.Area %in% "UASA3", "NeuterP5"] %in% c("Yes","No")), -100, d_ukr[d_ukr$Study.Area %in% "UASA3", "NeuterP5"])
-# )
-# 
-# neuter_a4_ukr <-  c(
-#   ifelse( !(d_ukr[ d_ukr$Study.Area %in% "UASA4", "NeuterP1"] %in% c("Yes","No")), -100, d_ukr[d_ukr$Study.Area %in% "UASA4", "NeuterP1"]),
-#   ifelse( !(d_ukr[ d_ukr$Study.Area %in% "UASA4", "NeuterP2"] %in% c("Yes","No")), -100, d_ukr[d_ukr$Study.Area %in% "UASA4", "NeuterP2"]),
-#   ifelse( !(d_ukr[ d_ukr$Study.Area %in% "UASA4", "NeuterP3"] %in% c("Yes","No")), -100, d_ukr[d_ukr$Study.Area %in% "UASA4", "NeuterP3"]),
-#   ifelse( !(d_ukr[ d_ukr$Study.Area %in% "UASA4", "NeuterP4"] %in% c("Yes","No")), -100, d_ukr[d_ukr$Study.Area %in% "UASA4", "NeuterP4"]),
-#   ifelse( !(d_ukr[ d_ukr$Study.Area %in% "UASA4", "NeuterP5"] %in% c("Yes","No")), -100, d_ukr[d_ukr$Study.Area %in% "UASA4", "NeuterP5"])
-# )
-# 
-# # add sex (unknown) for zi individuals
-# neuter_zi_A1_ukr <- c(
-#   c(neuter_a1_ukr[1:n_area_ukr[1]], rep(-100, n_augment_ukr - nrow(dukr_ch_s1))),
-#   c(neuter_a1_ukr[(n_area_ukr[1]*1+1):(n_area_ukr[1]*2)], rep(-100, n_augment_ukr - nrow(dukr_ch_s1))),
-#   c(neuter_a1_ukr[(n_area_ukr[1]*2+1):(n_area_ukr[1]*3)], rep(-100, n_augment_ukr - nrow(dukr_ch_s1))),
-#   c(neuter_a1_ukr[(n_area_ukr[1]*3+1):(n_area_ukr[1]*4)], rep(-100, n_augment_ukr - nrow(dukr_ch_s1))),
-#   c(neuter_a1_ukr[(n_area_ukr[1]*4+1):(n_area_ukr[1]*5)], rep(-100, n_augment_ukr - nrow(dukr_ch_s1)))
-#   )
-# 
-# sex_zi_A2_ukr <- c(sex_a2_ukr, rep(-100, n_augment_ukr - nrow(dukr_ch_s2)))
-# sex_zi_A3_ukr <- c(sex_a3_ukr, rep(-100, n_augment_ukr - nrow(dukr_ch_s3)))
-# sex_zi_A4_ukr <- c(sex_a4_ukr, rep(-100, n_augment_ukr - nrow(dukr_ch_s4)))
-
-
-# # add distinctiveness (unknown) for pseudo(zi) individuals
-# distinct_a1 <- ifelse(d[d$Study.Area %in% "ITSA1","Distinctiveness"] == "No photo", -100,
-#                       d[d$Study.Area %in% "ITSA1","Distinctiveness"])
-# 
-# distinct_a2 <- ifelse(d[d$Study.Area %in% "ITSA2","Distinctiveness"] == "No photo", -100,
-#                       d[d$Study.Area %in% "ITSA2","Distinctiveness"])
-# 
-# distinct_a3 <- ifelse(d[d$Study.Area %in% "ITSA3","Distinctiveness"] == "No photo", -100,
-#                       d[d$Study.Area %in% "ITSA3","Distinctiveness"])
-# 
-# distinct_a4 <- ifelse(d[d$Study.Area %in% "ITSA4","Distinctiveness"] == "No photo", -100,
-#                       d[d$Study.Area %in% "ITSA4","Distinctiveness"])
-# 
-# distinct_zi_S1 <- c(distinct_a1, rep(-100, n_augment - nrow(dukr_ch_s1)))
-# distinct_zi_S2 <- c(distinct_a2, rep(-100, n_augment - nrow(dukr_ch_s2)))
-# distinct_zi_S3 <- c(distinct_a3, rep(-100, n_augment - nrow(dukr_ch_s3)))
-# distinct_zi_S4 <- c(distinct_a4, rep(-100, n_augment - nrow(dukr_ch_s4)))
-
-# # create combined distinctiveness predictor
-# distinct <- matrix(c(distinct_zi_S1, distinct_zi_S2, distinct_zi_S3, distinct_zi_S4),
-#                    nrow = n_augment, ncol = 4)
-# 
-# distinct_factor <- as.factor(distinct)
-# distinct_factor <- factor(distinct_factor, levels = c(1,2,3,-100))
-# 
-# 
-# distinct_matrix <- model.matrix(~distinct_factor)[,-1]
-# distinct_matrix_a1 <- distinct_matrix[1:50,]
-# distinct_matrix_a2 <- distinct_matrix[51:100,]
-# distinct_matrix_a3 <- distinct_matrix[101:150,]
-# distinct_matrix_a4 <- distinct_matrix[151:200,]
-# 
-# distinct_model_matrix <- array(
-#   c(distinct_matrix_a1, distinct_matrix_a2, distinct_matrix_a3, distinct_matrix_a4),
-#   dim=c(50,3,4)
-# )
-
 ## Area distances
 
 area_dmat_ukr <- read.csv("Ukraine_Distances.csv")[,-1]
@@ -532,13 +397,6 @@ time_dmat_ukr <- matrix(c(
 nrow = 5, ncol=5, byrow = TRUE
 )
 
-#first_caps = array(NA, dim=c(n_augment, 2, 4))
-
-# for(m in 1:dim(ditaly_ch_zi)[1]){
-#   for(a in 1:4){
-#     first_caps[m,,a] <- first_cap(ditaly_ch_zi[m,,,a])
-#   }
-# }
 
 #-FIT STAN three state, both countries-------------------------------------------------------------------------------------------------------------
 # prepare data for Stan
@@ -748,136 +606,6 @@ HDI(ps_simple$N_hat_ukr.5.4)
 
 
 ### Explanatory variables ####
-
-### log odds of beta_weekend effect on delta (anchored on weekend)####
-mean(ps_simple$beta_weekend_ukr)
-HDI(ps_simple$beta_weekend_ukr)
-#Probability beta_weekend effect
-mean(inv_logit(ps_simple$beta_weekend_ukr))
-HDI(inv_logit(ps_simple$beta_weekend_ukr))
-#Difference in means
-mean( (ps_simple$mu_lodd_delta_ukr + ps_simple$beta_weekend_ukr) - ps_simple$mu_lodd_delta_ukr)
-mean( (inv_logit(ps_simple$mu_lodd_delta_ukr + ps_simple$beta_weekend_ukr)) - inv_logit(ps_simple$mu_lodd_delta_ukr))
-HDI( (inv_logit(ps_simple$mu_lodd_delta_ukr + ps_simple$beta_weekend_ukr)) - inv_logit(ps_simple$mu_lodd_delta_ukr))
-
-###log odds of beta_market effect on delta (anchored on market day)####
-mean(ps_simple$beta_market_ukr)
-HDI(ps_simple$beta_market_ukr)
-#Probability beta_market effect
-mean(inv_logit(ps_simple$beta_market_ukr))
-HDI(inv_logit(ps_simple$beta_market_ukr))
-#Difference in means
-mean( (ps_simple$mu_lodd_delta_ukr + ps_simple$beta_market_ukr) - ps_simple$mu_lodd_delta_ukr)
-mean( (inv_logit(ps_simple$mu_lodd_delta_ukr + ps_simple$beta_market_ukr)) - inv_logit(ps_simple$mu_lodd_delta_ukr))
-HDI( (inv_logit(ps_simple$mu_lodd_delta_ukr + ps_simple$beta_market_ukr)) - inv_logit(ps_simple$mu_lodd_delta_ukr))
-
-###log odds of beta_rain effect on delta (anchored on market day)####
-mean(ps_simple$beta_rain_ukr)
-HDI(ps_simple$beta_rain_ukr)
-#Probability beta_market effect
-mean(inv_logit(ps_simple$beta_rain_ukr))
-HDI(inv_logit(ps_simple$beta_rain_ukr))
-#Difference in means
-mean( (ps_simple$mu_lodd_delta_ukr + ps_simple$beta_rain_ukr) - ps_simple$mu_lodd_delta_ukr)
-mean( (inv_logit(ps_simple$mu_lodd_delta_ukr + ps_simple$beta_rain_ukr)) - inv_logit(ps_simple$mu_lodd_delta_ukr))
-HDI( (inv_logit(ps_simple$mu_lodd_delta_ukr + ps_simple$beta_rain_ukr)) - inv_logit(ps_simple$mu_lodd_delta_ukr))
-
-
-###log odds of beta_temp effect on delta (anchored on market day)####
-mean(ps_simple$beta_temp_ukr)
-HDI(ps_simple$beta_temp_ukr)
-#Probability beta_market effect
-mean(inv_logit(ps_simple$beta_temp_ukr))
-HDI(inv_logit(ps_simple$beta_temp_ukr))
-#Difference in means
-mean( (ps_simple$mu_lodd_delta_ukr + ps_simple$beta_temp_ukr) - ps_simple$mu_lodd_delta_ukr)
-mean( (inv_logit(ps_simple$mu_lodd_delta_ukr + ps_simple$beta_temp_ukr)) - inv_logit(ps_simple$mu_lodd_delta_ukr))
-HDI( (inv_logit(ps_simple$mu_lodd_delta_ukr + ps_simple$beta_temp_ukr)) - inv_logit(ps_simple$mu_lodd_delta_ukr))
-
-
-### log odds of sex effect on survival (female -> male)####
-mean(ps_simple$beta_sex_ukr.1)
-HDI(ps_simple$beta_sex_ukr.1)
-
-#probabilty of sex effect on survival
-mean(inv_logit(ps_simple$beta_sex_ukr.1))
-HDI(inv_logit(ps_simple$beta_sex_ukr.1))
-
-# total log odds of females' survival 
-mean(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.1*-0.5)
-HDI(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.1*-0.5)
-
-# total probability females' survival 
-mean(inv_logit(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.1*-0.5))
-HDI(inv_logit(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.1*-0.5))
-
-# total log odds of males' survival
-mean(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.1*0.5)
-HDI(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.1*0.5)
-
-# total log odds of males' survival
-mean(inv_logit(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.1*0.5))
-HDI(inv_logit(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.1*0.5))
-
-# difference between males and females
-mean(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.1*-0.5) - mean(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.1*0.5)
-mean(
-  inv_logit(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.1*-0.5) - inv_logit(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.1*0.5)
-) 
-HDI(
-  inv_logit(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.1*-0.5) - inv_logit(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.1*0.5)
-)
-
-
-
-### log odds of sex effect on delta (female -> male)####
-mean(ps_simple$beta_sex_ukr.2)
-HDI(ps_simple$beta_sex_ukr.2)
-
-
-#probabilty of sex effect on delta
-mean(inv_logit(ps_simple$beta_sex_ukr.2))
-HDI(inv_logit(ps_simple$beta_sex_ukr.2))
-
-# total log odds of females' delta 
-mean(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.2*-0.5)
-HDI(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.2*-0.5)
-
-# probability of female delta
-mean(inv_logit(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.2*-0.5))
-HDI(inv_logit(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.2*-0.5))
-
-# total log odds of males' delta
-mean(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.2*0.5)
-HDI(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.2*0.5)
-
-# probability of male delta
-mean(inv_logit(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.2*0.5))
-HDI(inv_logit(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.2*0.5))
-
-# difference between males and females delta
-mean(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.2*-0.5) - mean(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.2*0.5)
-mean(
-  inv_logit(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.2*-0.5) - inv_logit(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.2*0.5)
-) 
-HDI(
-  inv_logit(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.2*-0.5) - inv_logit(ps_simple$mu_lodd_phi_ukr + ps_simple$beta_sex_ukr.2*0.5)
-) 
-
-
-
-# plotting temperature
-plot(temp, inv_logit( mean(italy$mu_lodd_delta) + mean(italy$beta_temp) * temp), type="l", ylim=c(0,1))
-lines(temp, inv_logit( HDI(italy$mu_lodd_delta)[1] + HDI(italy$beta_temp)[1] * temp), type="l", lty=2)
-lines(temp, inv_logit( HDI(italy$mu_lodd_delta)[2] + HDI(italy$beta_temp)[2] * temp), type="l", lty=2)
-# or
-sample_rows <- sample(1:nrow(italy), 100, replace=TRUE)
-plot(temp, inv_logit( mean(italy$mu_lodd_delta) + mean(italy$beta_temp) * temp), type="l", ylim=c(0,1), lwd=3)
-for(i in sample_rows){
-  lines(temp, inv_logit(italy[i,"mu_lodd_delta"] + italy[i,"beta_temp"] * temp), lwd=0.1, col="gray")
-}
-
-
 
 samples <- sample(1:nrow(italy), 500, replace=TRUE) #nrow(italy)
 n_samples <- length(samples)

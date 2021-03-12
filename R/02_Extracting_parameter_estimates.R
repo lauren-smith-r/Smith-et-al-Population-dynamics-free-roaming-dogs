@@ -1,6 +1,6 @@
 require(ggplot2)
 require(ggpubr)
-setwd("~/Dropbox/PhD Work/Mark-Recapture & Fieldwork Street Surveys/Mark recapture analyses/Bayesian PCRD Dec 19")
+setwd("")
 
 area_dmat_italy <- read.csv("italy_Distances.csv")[,-1]
 area_dmat_ukr <- read.csv("Ukraine_Distances.csv")[,-1]
