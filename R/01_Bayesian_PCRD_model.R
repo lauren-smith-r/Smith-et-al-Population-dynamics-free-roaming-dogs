@@ -3,9 +3,10 @@ rstan_options(auto_write = TRUE)
 require(lubridate)
 require(data.table)
 
-logit <- function(x) log(x / (1-x))
-  
-inv_logit <- function(x) exp(x) / (1 + exp(x))
+
+logit <- function(x) log(x / (1-x)) # logit function
+inv_logit <- function(x) exp(x) / (1 + exp(x)) # inverse logit function
+HDI <- function(x) coda::HPDinterval(coda::as.mcmc(x), prob=0.95) # highest density interval function
 
 #------------------------------------------------------------------------------------------------------
 # calculate population abundance statistics
@@ -82,7 +83,6 @@ viterbi <- function(TM_array, EM_array, ch)
 }
 #-------------------------------------------------------------
 
-
 first_cap <- function(y){
   n_p = length(y[1,])
   n_s = length(y[,1])
@@ -108,8 +108,6 @@ first_cap <- function(y){
   }
 }
 
-HDI <- function(x) coda::HPDinterval(coda::as.mcmc(x), prob=0.95) 
-
 # ARRANGE ITALY DATA------------------------------------------------------------------------------------------------
 
 d_italy = read.csv("PRDMR.csv")
@@ -133,22 +131,22 @@ n_area_italy <- c(
 
 # Splitting up for the different study areas.
 ditaly_ch_s1 <- array(
-  unlist(d_italy[ d_italy$Study.Area %in% "ITSA1" , ch_cols_italy ]),
+  unlist(d_italy[ d_italy$Study.Area %in% "ITSA1" , ch_cols_italy ]), # Italy study area 1
   dim = c(n_area_italy[1], 3, 5)
 )
 
 ditaly_ch_s2 <- array(
-  unlist(d_italy[ d_italy$Study.Area %in% "ITSA2" , ch_cols_italy ]),
+  unlist(d_italy[ d_italy$Study.Area %in% "ITSA2" , ch_cols_italy ]), # Italy study area 2
   dim = c(n_area_italy[2], 3, 5)
 )
 
 ditaly_ch_s3 <- array(
-  unlist(d_italy[ d_italy$Study.Area %in% "ITSA3" , ch_cols_italy ]),
+  unlist(d_italy[ d_italy$Study.Area %in% "ITSA3" , ch_cols_italy ]), # Italy study area 3
   dim = c(n_area_italy[3], 3, 5)
 )
 
 ditaly_ch_s4 <- array(
-  unlist(d_italy[ d_italy$Study.Area %in% "ITSA4" , ch_cols_italy ]),
+  unlist(d_italy[ d_italy$Study.Area %in% "ITSA4" , ch_cols_italy ]), # Italy study area 4
   dim = c(n_area_italy[4], 3, 5)
 )
 
@@ -256,7 +254,6 @@ d_ukr = read.csv("PRDMR.csv")
 
 ###ukr dataset####
 
-
 # Setting up arrays for ukr, by study area and sampling period.
 # The dimensions are set based on the total number of individuals observed in a study area.
 
@@ -273,7 +270,7 @@ n_area_ukr <- c(
 
 # Splitting up for the different study areas.
 dukr_ch_s1 <- array(
-  unlist(d_ukr[ d_ukr$Study.Area %in% "UASA1" , ch_cols_ukr ]),
+  unlist(d_ukr[ d_ukr$Study.Area %in% "UASA1" , ch_cols_ukr ]), # Ukraine study area 1
   dim = c(n_area_ukr[1], 3, 5)
 )
 
@@ -281,17 +278,17 @@ dukr_ch_s1 <- array(
 dukr_ch_s1[,2,3] <- -1
 
 dukr_ch_s2 <- array(
-  unlist(d_ukr[ d_ukr$Study.Area %in% "UASA2" , ch_cols_ukr ]),
+  unlist(d_ukr[ d_ukr$Study.Area %in% "UASA2" , ch_cols_ukr ]), # Ukraine study area 2
   dim = c(n_area_ukr[2], 3, 5)
 )
 
 dukr_ch_s3 <- array(
-  unlist(d_ukr[ d_ukr$Study.Area %in% "UASA3" , ch_cols_ukr ]),
+  unlist(d_ukr[ d_ukr$Study.Area %in% "UASA3" , ch_cols_ukr ]), # Ukraine study area 3
   dim = c(n_area_ukr[3], 3, 5)
 )
 
 dukr_ch_s4 <- array(
-  unlist(d_ukr[ d_ukr$Study.Area %in% "UASA4" , ch_cols_ukr ]),
+  unlist(d_ukr[ d_ukr$Study.Area %in% "UASA4" , ch_cols_ukr ]), # Ukraine study area 4
   dim = c(n_area_ukr[4], 3, 5)
 )
 
@@ -431,14 +428,14 @@ stan_data <- list(
 )
 
 fit_stan <- stan(
-  file = "lauren-hmm-three-state-dapx-two-pop.stan",
+  file = "hmm-three-state-dapx-two-pop.stan",
   data = stan_data, 
   include = FALSE, pars = c("TM_italy","EM_italy","TM_ukr","EM_ukr"),
   warmup = 2500, iter = 5000, 
   chains = 4, cores = 4,
   control = list(adapt_delta = 0.95), 
   seed = 2019, 
-  sample_file = "lauren-mcmc-samples.csv"
+  sample_file = "mcmc-samples.csv"
 )
 
 capture.output(print(fit_stan, 
@@ -458,7 +455,7 @@ capture.output(print(fit_stan,
 
 fwrite(x = as.matrix(fit_stan), file = "two-pop-posterior-dist.csv", row.names = FALSE)
 
-ps <- as.matrix(fread("lauren-mcmc-samples_1.csv"))
+ps <- as.matrix(fread("mcmc-samples_1.csv"))
 
 simple_pars <- c("mu_lodd_psi_italy", "mu_lodd_phi_italy", "mu_lodd_delta_italy", "sigma_dog_italy",
                  "beta_sex_italy", "beta_weekend_italy", "beta_market_italy", "beta_temp_italy", "beta_rain_italy",
@@ -482,13 +479,13 @@ for(i in 1:length(simple_pars)){
   
 }
 
-write.csv(ps_simple, "lauren-mcmc-samples-simple.csv", row.names = FALSE)
+write.csv(ps_simple, "mcmc-samples-simple.csv", row.names = FALSE)
 
 ## read in other files
 
-ps_simple <- read.csv("lauren-mcmc-samples-simple.csv")
+ps_simple <- read.csv("mcmc-samples-simple.csv")
 
-ps <- as.matrix(fread("lauren-mcmc-samples_2.csv"))
+ps <- as.matrix(fread("mcmc-samples_2.csv"))
 
 simple_pars <- c("mu_lodd_psi_italy", "mu_lodd_phi_italy", "mu_lodd_delta_italy", "sigma_dog_italy",
                  "beta_sex_italy", "beta_weekend_italy", "beta_market_italy", "beta_temp_italy", "beta_rain_italy",
@@ -538,7 +535,7 @@ stan_italy_data <- list(
 )
 
 fit_italy <- stan(
-  file = "Lauren-PCRD-ITALY-HMM-DAPX.stan",
+  file = "PCRD-ITALY-HMM-DAPX.stan",
   data = stan_italy_data,
   warmup = 250, iter = 500, chains = 4, cores = 4,
   control = list(adapt_delta = 0.95)
@@ -568,7 +565,7 @@ stan_italy_data <- list(
 )
 
 fit_italy <- stan(
-  file = "Lauren-PCRD-ITALY-withoutmisclass-HMM-DAPX.stan",
+  file = "PCRD-ITALY-withoutmisclass-HMM-DAPX.stan",
   data = stan_italy_data,
   warmup = 2500, iter = 5000, chains = 4, cores = 4,
   control = list(adapt_delta=0.95)
@@ -580,9 +577,9 @@ capture.output(print(fit_italy,
                      ), 
                file = "Italy-output-summary.csv")
 
-fwrite(as.matrix(fit_italy), file = "D:/Lauren_Model_Output/Italy-posterior-dist.csv")
+fwrite(as.matrix(fit_italy), file = "Italy-posterior-dist.csv")
 
-italy = as.data.frame(fread("E:/Lauren_Model_Output/Italy-posterior-dist.csv"))
+italy = as.data.frame(fread("Italy-posterior-dist.csv"))
 
 inv_logit(italy$mu_lodd_delta)
 
